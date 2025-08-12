@@ -582,38 +582,64 @@
 
 
 
-<h4 id="register-aws-account">Đăng ký tài khoản AWS</h4>
-<ol>
-  <li>Truy cập trang chủ <strong><a href="https://aws.amazon.com/">AWS</a></strong> và nhấn <b>Create an AWS Account</b>.</li>
-</ol>
-<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0001-register-aws.png" alt="Register AWS Account"></p>
-<ol start="2">
-  <li>Nhập email, mật khẩu và tên tài khoản AWS của bạn.</li>
-</ol>
-<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0002-register-aws.png" alt="Register AWS Account"></p>
-<ol start="3">
-  <li>Chọn loại tài khoản (Cá nhân hoặc Doanh nghiệp) và điền thông tin cá nhân.</li>
-</ol>
-<ul>
-  <li>Nhập địa chỉ, số điện thoại và các thông tin cần thiết khác.</li>
-</ul>
-<ol start="4">
-  <li>Nhập thông tin thẻ thanh toán (Visa/MasterCard) để xác thực tài khoản.</li>
-</ol>
-<ul>
-  <li>Bạn sẽ bị trừ một khoản phí nhỏ để xác thực, sau đó sẽ được hoàn lại.</li>
-</ul>
-<ol start="5">
-  <li>Xác thực số điện thoại bằng mã OTP gửi về điện thoại của bạn.</li>
-</ol>
-<ol start="6">
-  <li>Chọn gói dịch vụ (Free Tier) và hoàn tất đăng ký.</li>
-</ol>
-<ul>
-  <li>Sau khi đăng ký thành công, bạn có thể đăng nhập vào <a href="https://console.aws.amazon.com/">AWS Management Console</a> để bắt đầu sử dụng các dịch vụ AWS.</li>
-</ul>
-<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0003-register-aws.png" alt="Register AWS Account"></p>
+<h4 id="create-aws-account">Tạo tài khoản AWS (Hướng dẫn nhanh)</h4>
 
+<p>Để bắt đầu sử dụng dịch vụ AWS cho workshop, trước tiên bạn cần tạo một tài khoản AWS. Các bước dưới đây sẽ hướng dẫn bạn từng bước theo cách ngắn gọn và dễ theo dõi.</p>
+
+<ol>
+  <li><strong>Truy cập trang chủ AWS:</strong>
+    <br>Vào <a href="https://aws.amazon.com/" target="_blank" rel="noopener">https://aws.amazon.com/</a> và chọn <strong>Create an AWS Account</strong>.</li>
+</ol>
+<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0001-register-aws.png" alt="Bắt đầu tạo tài khoản AWS" style="max-width:100%;height:auto;"></p>
+
+<ol start="2">
+  <li><strong>Nhập thông tin đăng ký cơ bản:</strong>
+    <br>Gõ <em>email</em> bạn muốn sử dụng cho tài khoản, tạo <em>mật khẩu</em> và đặt tên cho tài khoản (Account name).</li>
+</ol>
+<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0002-register-aws.png" alt="Nhập thông tin tài khoản AWS" style="max-width:100%;height:auto;"></p>
+
+<ol start="3">
+  <li><strong>Chọn loại tài khoản & cung cấp thông tin liên hệ:</strong>
+    <ul>
+      <li>Chọn <em>Personal</em> (Cá nhân) hoặc <em>Business</em> (Doanh nghiệp).</li>
+      <li>Điền họ tên, địa chỉ và số điện thoại để hoàn tất phần thông tin cá nhân.</li>
+    </ul>
+  </li>
+</ol>
+
+<ol start="4">
+  <li><strong>Xác thực thanh toán bằng thẻ:</strong>
+    <ul>
+      <li>Nhập thông tin thẻ Visa/MasterCard để AWS xác minh (thẻ sẽ bị trừ một mức phí nhỏ tạm thời).</li>
+      <li>Phí xác minh thường được hoàn lại sau khi xác thực xong.</li>
+    </ul>
+  </li>
+</ol>
+
+<ol start="5">
+  <li><strong>Xác nhận điện thoại:</strong>
+    <br>Nhập mã OTP được gửi tới số điện thoại bạn đã cung cấp để xác thực danh tính.</li>
+</ol>
+
+<ol start="6">
+  <li><strong>Chọn gói dịch vụ:</strong>
+    <ul>
+      <li>Chọn gói <em>Free Tier</em> (nếu phù hợp) để thử nghiệm miễn phí trong giới hạn.</li>
+      <li>Hoàn tất các bước, sau đó đăng nhập vào <a href="https://console.aws.amazon.com/" target="_blank" rel="noopener">AWS Management Console</a>.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="../../images/2-Prerequiste/2.1-DownloadHugoTheme/0003-register-aws.png" alt="AWS Console sau khi đăng ký" style="max-width:100%;height:auto;"></p>
+
+<hr>
+
+<h5>Ghi chú & mẹo</h5>
+<ul>
+  <li><strong>Chuẩn bị trước:</strong> Hãy có sẵn email, số điện thoại và thẻ tín dụng/ghi nợ trước khi bắt đầu.</li>
+  <li><strong>Bảo mật tài khoản:</strong> Sau khi đăng ký, bật <em>MFA</em> (Xác thực đa yếu tố) cho tài khoản root và tạo <em>IAM user</em> để sử dụng cho công việc hàng ngày.</li>
+  <li><strong>Lưu ý chi phí:</strong> Dù chọn Free Tier, một số dịch vụ có thể phát sinh phí nếu vượt hạn mức — theo dõi Billing trong Console thường xuyên.</li>
+</ul>
 
 
 
