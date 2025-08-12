@@ -10,7 +10,7 @@
 
   <link rel="icon" href="../images/favicon.png" type="image/png">
 
-  <title>Introduction :: AWS Serverless Feedback Portal</title>
+  <title>Introduction :: AWS Serverless E-commerce Workshop</title>
 
 
   <link href="../css/nucleus.css?1652177652" rel="stylesheet">
@@ -592,25 +592,22 @@
       <div id="body-inner">
 
         <h1>
-          AWS Serverless Feedback Portal
+         AWS Serverless E-commerce Workshop
         </h1>
 
-        <p>Trong dự án này, bạn sẽ xây dựng một ứng dụng web hiện đại áp dụng kiến trúc AWS Serverless nhằm đảm bảo bảo mật, hiệu năng cao và khả năng mở rộng linh hoạt.</p>
+        <p>Trong workshop này, bạn sẽ triển khai một hệ thống web thương mại điện tử sử dụng kiến trúc AWS Serverless, mang lại khả năng mở rộng linh hoạt, tối ưu chi phí và đảm bảo an toàn dữ liệu.</p>
 
-        <!-- Sơ đồ kiến trúc bằng Mermaid -->
-        <img src="../images/architecture-diagram.png" style="max-width: 100%; height: auto;">
+<!-- Sơ đồ kiến trúc hệ thống -->
+<img src="../images/architecture-diagram.png" style="max-width: 100%; height: auto;">
 
+<ul>
+  <li><b>Giao diện người dùng (Frontend):</b> Xây dựng bằng ReactJS, được đóng gói và lưu trữ trên <strong>Amazon S3</strong>, sau đó phân phối toàn cầu thông qua <strong>Amazon CloudFront</strong> để đảm bảo tốc độ tải nhanh và ổn định.</li>
+  <li><b>Quản lý người dùng (Authentication):</b> Sử dụng <strong>Amazon Cognito</strong> để đăng ký, đăng nhập và phân quyền truy cập an toàn.</li>
+  <li><b>Xử lý nghiệp vụ (Backend API):</b> Kết hợp <strong>Amazon API Gateway</strong> với <strong>AWS Lambda</strong> để thực thi các chức năng như quản lý sản phẩm, xử lý đơn hàng và phản hồi khách hàng, đồng thời bật CORS để giao tiếp bảo mật với frontend.</li>
+  <li><b>Cơ sở dữ liệu:</b> Lưu trữ thông tin sản phẩm, đơn hàng và phản hồi trong <strong>Amazon DynamoDB</strong>, tận dụng tốc độ truy xuất cao và khả năng mở rộng theo nhu cầu.</li>
+</ul>
 
-        <ul>
-          <li><b>Frontend:</b> Ứng dụng React được lưu trữ trên Amazon S3 và phân phối qua Amazon CloudFront, giúp tối ưu tốc độ truy cập và tăng cường bảo mật.</li>
-          <li><b>Authentication:</b> Amazon Cognito quản lý xác thực người dùng, đảm bảo chỉ người dùng hợp lệ mới truy cập được hệ thống.</li>
-          <li><b>API Backend:</b> Amazon API Gateway kết hợp với AWS Lambda Functions để xử lý các yêu cầu từ frontend, hỗ trợ CORS để giao tiếp an toàn.</li>
-          <li><b>Database:</b> Dữ liệu được lưu trữ và truy xuất qua Amazon DynamoDB, đảm bảo hiệu năng và khả năng mở rộng.
-          </li>
-        </ul>
-
-        <p>Dự án này giúp bạn thực hành triển khai một hệ thống serverless hoàn chỉnh trên AWS, từ giao diện người dùng
-          đến backend và lưu trữ dữ liệu.</p>
+<p>Hoàn thành workshop, bạn sẽ nắm vững quy trình xây dựng một ứng dụng thương mại điện tử theo mô hình serverless trên AWS, từ phát triển giao diện, thiết lập backend cho đến quản lý cơ sở dữ liệu.</p>
 
 
 
