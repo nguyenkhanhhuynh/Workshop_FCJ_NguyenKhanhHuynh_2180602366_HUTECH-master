@@ -577,17 +577,21 @@
 
 
 <!-- 4. Cleanup Resource -->
-<h2 id="cleanup-resource">4. Dọn dẹp tài nguyên bằng SAM CLI</h2>
-<ul>
-  <li>Sử dụng lệnh sau để xóa toàn bộ tài nguyên đã deploy bằng SAM CLI:</li>
-</ul>
-<pre><code>
+<h2 id="cleanup-resource">4. Xóa tài nguyên đã triển khai bằng SAM CLI</h2>
+
+<p>Sau khi hoàn tất workshop, bạn nên gỡ bỏ toàn bộ tài nguyên AWS để tránh phát sinh chi phí không mong muốn. SAM CLI cung cấp lệnh dọn dẹp nhanh gọn như sau:</p>
+
+<pre><code class="language-bash">
+# Thực thi lệnh để gỡ bỏ stack đã triển khai
 sam delete
 </code></pre>
+
 <ul>
-  <li>Lệnh <code>sam delete</code> sẽ tự động xóa tất cả các resource (Lambda, API Gateway, DynamoDB, S3, CloudFront, Cognito, ...) đã tạo theo stack SAM của bạn.</li>
-  <li>Bạn sẽ được hỏi xác nhận trước khi xóa. Sau khi xác nhận, toàn bộ tài nguyên sẽ được dọn dẹp sạch sẽ.</li>
-  <li>Nên kiểm tra lại AWS Console để đảm bảo không còn tài nguyên nào dư thừa.</li>
+  <li>Lệnh <code>sam delete</code> sẽ tìm và xóa toàn bộ tài nguyên được tạo thông qua stack SAM (bao gồm Lambda, API Gateway, DynamoDB, S3, CloudFront, Cognito, ...).</li>
+  <li>Trước khi tiến hành, hệ thống sẽ yêu cầu bạn xác nhận. Chỉ khi nhập <strong>y</strong> hoặc <strong>yes</strong> thì việc xóa mới được thực hiện.</li>
+  <li>Sau khi xóa xong, bạn nên truy cập <a href="https://console.aws.amazon.com/" target="_blank" rel="noopener">AWS Management Console</a> để rà soát lại và đảm bảo không còn tài nguyên dư thừa.</li>
+  <li><em>Mẹo:</em> Nếu bạn triển khai nhiều stack khác nhau, hãy xác định đúng tên stack cần xóa để tránh ảnh hưởng đến các dự án khác.</li>
+</ul>
 
 
 

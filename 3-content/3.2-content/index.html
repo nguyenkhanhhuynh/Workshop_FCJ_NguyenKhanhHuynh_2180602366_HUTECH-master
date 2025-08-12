@@ -777,66 +777,71 @@ Truy cập: https://xxxxxxxxxxxx.cloudfront.net
     </ul>
   </li>
 
-  <li><b>Kết nối các thành phần:</b>
-    <ul>
-      <li>Frontend gọi API Gateway endpoint, xác thực qua Cognito:</li>
-      <pre><code class="language-js">
-//  Ví dụ gọi API từ React kèm token Cognito
-const response = await fetch('https://your-api-id.execute-api.region.amazonaws.com/Prod/feedback', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': userToken // JWT token từ Cognito
-  },
-  body: JSON.stringify({
-    username: 'yourname',
-    message: 'Nội dung feedback'
-  })
-});
-const data = await response.json();
-      </code></pre>
-      <li>API Gateway kiểm tra token Cognito.</li>
-      <li>Request được chuyển tiếp tới Lambda.</li>
-      <li>Lambda xử lý và lưu dữ liệu vào DynamoDB.</li>
-    </ul>
-  </li>
+  <li><b>Liên kết các thành phần trong hệ thống:</b>
+  <ul>
+    <li>Phần giao diện React sẽ gửi yêu cầu đến API Gateway và đính kèm token xác thực từ Cognito.</li>
+    <pre><code class="language-js">
+// Ví dụ gửi request từ React kèm JWT token của Cognito
+async function sendFeedback(username, message, userToken) {
+  const apiUrl = 'https://your-api-id.execute-api.region.amazonaws.com/Prod/feedback';
+  
+  const response = await fetch(apiUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': userToken // Token JWT lấy từ Cognito
+    },
+    body: JSON.stringify({ username, message })
+  });
 
-  <li><b>Kiểm thử và hoàn thiện:</b>
-    <ul>
-      <li><b>Kiểm thử với Postman:</b>
-        <ul>
-          <li>Đăng nhập hoặc đăng ký tài khoản trên giao diện React để lấy JWT token từ Cognito.</li>
-          <li>Mở Postman, tạo request mới:
-            <ul>
-              <li>Chọn phương thức <b>POST</b>, nhập endpoint: <code>https://your-api-id.execute-api.region.amazonaws.com/Prod/feedback</code></li>
-              <li>Tab <b>Headers</b>: Thêm <code>Content-Type: application/json</code> và <code>Authorization: &lt;JWT token&gt;</code></li>
-              <li>Tab <b>Body</b> (raw, JSON):
-                <pre>{
-  "username": "yourname",
-  "message": "Nội dung feedback"
+  const result = await response.json();
+  console.log('Kết quả phản hồi:', result);
+}
+    </code></pre>
+    <li>API Gateway sẽ tiến hành xác minh token và chỉ cho phép request hợp lệ đi tiếp.</li>
+    <li>Các yêu cầu hợp lệ được chuyển đến hàm Lambda để xử lý nghiệp vụ.</li>
+    <li>Lambda lưu thông tin xuống bảng DynamoDB để quản lý dữ liệu lâu dài.</li>
+  </ul>
+</li>
+
+<li><b>Quy trình kiểm thử và tối ưu:</b>
+  <ul>
+    <li><b>Kiểm thử qua Postman:</b>
+      <ul>
+        <li>Đăng nhập/đăng ký trên ứng dụng React để lấy JWT token từ Cognito.</li>
+        <li>Tạo một request mới trong Postman:
+          <ul>
+            <li>Chọn <b>POST</b> và nhập endpoint API: <code>https://your-api-id.execute-api.region.amazonaws.com/Prod/feedback</code></li>
+            <li>Tab <b>Headers</b>: thêm <code>Content-Type: application/json</code> và <code>Authorization: &lt;JWT token&gt;</code></li>
+            <li>Tab <b>Body</b> (raw, JSON):
+              <pre>{
+  "username": "tên-người-dùng",
+  "message": "Nội dung phản hồi"
 }</pre>
-              </li>
-              <li>Nhấn <b>Send</b> và kiểm tra phản hồi trả về <code>200 OK</code> cùng thông báo thành công.</li>
-            </ul>
-          </li>
-          <li>Kiểm tra dữ liệu đã lưu trên DynamoDB bằng AWS Console hoặc AWS CLI.</li>
-          <li>Thử gửi request không có hoặc sai JWT token để xác nhận API trả về lỗi <code>401 Unauthorized</code>.</li>
-          <li>Thử gửi dữ liệu thiếu trường hoặc sai định dạng để kiểm tra phản hồi lỗi từ Lambda.</li>
-        </ul>
-      </li>
-      <li><b>Kiểm thử tích hợp giao diện:</b>
-        <ul>
-          <li>Đăng nhập, gửi feedback từ giao diện React, kiểm tra thông báo thành công/thất bại.</li>
-          <li>Kiểm tra hiển thị lỗi khi nhập thiếu thông tin hoặc token hết hạn.</li>
-        </ul>
-      </li>
-      <li><b>Hoàn thiện tài liệu:</b>
-        <ul>
-          <li>Ghi chú lại các bước kiểm thử, các lỗi thường gặp và cách xử lý.</li>
-          <li>Hướng dẫn deploy lại hoặc rollback nếu có lỗi phát sinh.</li>
-        </ul>
-      </li>
-    </ul>
+            </li>
+            <li>Nhấn <b>Send</b> để gửi yêu cầu và kiểm tra phản hồi trả về <code>200 OK</code> cùng thông báo thành công.</li>
+          </ul>
+        </li>
+        <li>Truy cập AWS Console hoặc dùng CLI để kiểm tra dữ liệu đã được lưu vào DynamoDB.</li>
+        <li>Gửi thử yêu cầu với token sai hoặc không có token để đảm bảo API trả về <code>401 Unauthorized</code>.</li>
+        <li>Thử bỏ trống hoặc nhập sai định dạng dữ liệu để kiểm tra thông báo lỗi từ Lambda.</li>
+      </ul>
+    </li>
+    <li><b>Kiểm thử trực tiếp trên giao diện:</b>
+      <ul>
+        <li>Đăng nhập, nhập phản hồi và gửi từ giao diện React, theo dõi thông báo trả về.</li>
+        <li>Kiểm tra việc hiển thị lỗi khi token hết hạn hoặc khi thiếu thông tin bắt buộc.</li>
+      </ul>
+    </li>
+    <li><b>Hoàn thiện tài liệu hướng dẫn:</b>
+      <ul>
+        <li>Ghi lại chi tiết các bước kiểm thử, liệt kê lỗi thường gặp và cách xử lý.</li>
+        <li>Hướng dẫn quy trình triển khai lại (redeploy) hoặc khôi phục (rollback) khi cần.</li>
+      </ul>
+    </li>
+  </ul>
+</li>
+
 
 
 
